@@ -18,7 +18,18 @@ app.post('/login', (req, res) =>{
     res.send({token: access_token, profile: _profile})
 })
 
-
+app.get('/cal', async (req, res) =>{
+    // let url = `http://api.mathjs.org/v4/?expr=${expr}`
+    let result = await axios.get('http://api.mathjs.org/v4/?expr=', {  
+        params: {
+            expr : [
+                "2+2"
+            ]
+        }
+    })
+    console.log(result)
+    // res.send({data:result})
+})
 
 app.listen(port, ()=>{
     console.log(`Listening on port ${port}`)

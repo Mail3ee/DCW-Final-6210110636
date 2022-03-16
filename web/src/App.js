@@ -1,7 +1,9 @@
 import './App.css';
 import GoogleLogin from 'react-google-login'
-import { useState } from 'react'
+import { React, useState } from 'react'
 import axios from 'axios'
+import { Link, Route } from 'react-router-dom'
+import userInfo from './components/userInfo'
 
 function App() {
 
@@ -25,11 +27,18 @@ function App() {
         }
   }
 
-  const handleLogout = () =>{
-    localStorage.removeItem('loginData')
-    setLoginData(null)
-}
+    const handleLogout = () =>{
+        localStorage.removeItem('loginData')
+        setLoginData(null)
+    }
 
+    const userinfo = () => {
+      
+    }
+
+    const calPath = () => {
+      
+    }
   
   return (
     <div className="App">
@@ -43,15 +52,20 @@ function App() {
                         <h3>You logged in as {loginData.name}</h3>
 
                         <button onClick={handleLogout}>Logout</button>
+                        {/* <button onClick={userinfo}>User Information</button> */}
+                        <button onClick={calPath}>Use Calculator</button>
+                        <userInfo />
                     </div>
+
+                    
                 ):(
                     <GoogleLogin 
-                    clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
-                    buttonText = "Login with Google"
-                    onSuccess={handleLogin}
-                    onFailure={handleFailure}
-                    cookiePolicy={'single_host_origin'}>
-                  </GoogleLogin>
+                      clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+                      buttonText = "Login with Google"
+                      onSuccess={handleLogin}
+                      onFailure={handleFailure}
+                      cookiePolicy={'single_host_origin'}>
+                    </GoogleLogin>
                 )
             }
         </div>
