@@ -19,7 +19,6 @@ app.post('/login', (req, res) =>{
 })
 
 app.post('/cal', async (req, res) =>{
-    // let url = `http://api.mathjs.org/v4/?expr=${expr}`
     let data = req.body.expr
     let _precision = req.body.pre
     let result = await axios.get('http://api.mathjs.org/v4/?expr=', {  
@@ -30,7 +29,6 @@ app.post('/cal', async (req, res) =>{
             precision : _precision || 2
         }
     })
-    // console.log(result)
     res.send({result:result.data[1]})
 })
 

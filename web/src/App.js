@@ -12,7 +12,7 @@ function App() {
     )
 
   const handleFailure = (result) =>{
-    console.log(result)
+    /*  Fail Login to Google */
   }
   const handleLogin = async (response) =>{
         if (response.accessToken) {
@@ -20,7 +20,6 @@ function App() {
                 token : response.accessToken,
                 profile : response.profileObj
             })
-            // console.log(result)
             setLoginData(result.data.profile)
         }
   }
