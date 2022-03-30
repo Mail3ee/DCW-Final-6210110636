@@ -20,7 +20,7 @@ function App() {
                 token : response.accessToken,
                 profile : response.profileObj
             })
-            console.log(result)
+            // console.log(result)
             setLoginData(result.data.profile)
         }
   }
@@ -30,14 +30,6 @@ function App() {
         setLoginData(null)
     }
 
-    // const userinfo = () => {
-      
-    // }
-
-    const calPath = () => {
-      
-    }
-  
   return (
     <div className="App">
       <header className="App-header">
@@ -50,7 +42,6 @@ function App() {
                         <h3>You logged in as {loginData.name}</h3>
 
                         <button onClick={handleLogout}>Logout</button>
-                        <button onClick={calPath}>Use Calculator</button>
                         <userInfo />
                     </div>
 
