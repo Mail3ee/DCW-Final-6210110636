@@ -2,8 +2,6 @@ import './App.css';
 import GoogleLogin from 'react-google-login'
 import { React, useState } from 'react'
 import axios from 'axios'
-import { Link, Route } from 'react-router-dom'
-import userInfo from './components/userInfo'
 
 function App() {
 
@@ -32,9 +30,9 @@ function App() {
         setLoginData(null)
     }
 
-    const userinfo = () => {
+    // const userinfo = () => {
       
-    }
+    // }
 
     const calPath = () => {
       
@@ -52,7 +50,6 @@ function App() {
                         <h3>You logged in as {loginData.name}</h3>
 
                         <button onClick={handleLogout}>Logout</button>
-                        {/* <button onClick={userinfo}>User Information</button> */}
                         <button onClick={calPath}>Use Calculator</button>
                         <userInfo />
                     </div>
