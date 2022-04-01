@@ -78,6 +78,8 @@ app.post('/post', (req, res) =>{
             }
         }
     );
+    connection.execSql(request);
+    res.send({status:"ok"})   
 })
 
 app.listen(port, ()=>{
