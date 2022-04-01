@@ -1,9 +1,52 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-const axios = require('axios')
+const { Connection, Request } = require("tedious");
+const winston = require('winston');
+const expressWinston = require('express-winston');
 const cors = require('cors')
 const port = 8000
 const app = express()
+
+const config = {
+    authentication: {
+      options: {
+        userName: "mail3ee", // update me
+        password: "Jate_13162929" // update me
+      },
+      type: "default"
+    },
+    server: "dcw-web-6210110636.database.windows.net", // update me
+    options: {
+      database: "dcw-websql", //update me
+      encrypt: true
+    }
+};
+
+const connection = new Connection(config);
+
+connection.on("connect", err => {
+    if (err) {
+      console.error(err.message);
+    }else {
+        console.log("connect") 
+    }
+});
+connection.connect();
+
+app.use(expressWinston.logger({
+    transports: [
+      new winston.transports.Console()
+    ],
+    format: winston.format.combine(
+      winston.format.colorize(),
+      winston.format.json()
+    ),
+    meta: false,
+    msg: "HTTP  ",
+    expressFormat: true,
+    colorize: false,
+    ignoreRoute: function (req, res) { return false; }
+}));
 
 app.use(bodyParser.json());
 app.use(cors())
@@ -19,22 +62,26 @@ app.post('/login', (req, res) =>{
 })
 
 app.post('/post', (req, res) =>{
-    console.log(req.body)
-})
+    let user_id = req.body.profile.googleId
+    let user_name = req.body.profile.name
+    let msg = req.body.msg
 
-// app.post('/cal', async (req, res) =>{
-//     let data = req.body.expr
-//     let _precision = req.body.pre
-//     let result = await axios.get('http://api.mathjs.org/v4/?expr=', {  
-//         params: {
-//             expr : [
-//                 data
-//             ],
-//             precision : _precision || 2
-//         }
-//     })
-//     res.send({result:result.data[1]})
-// })
+    // const request = new Request(
+    //     `INSERT to 20 pc.Name as CategoryName,
+    //                    p.name as ProductName
+    //      FROM [SalesLT].[ProductCategory] pc
+    //      JOIN [SalesLT].[Product] p ON pc.productcategoryid = p.productcategoryid`,
+    //     (err, rowCount) => {
+    //       if (err) {
+    //         console.error(err.message);
+    //       } else {
+    //         console.log(`${rowCount} row(s) returned`);
+    //       }
+    //     }
+    //   );
+
+    
+})
 
 app.listen(port, ()=>{
     console.log(`Listening on port ${port}`)

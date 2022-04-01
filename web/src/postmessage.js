@@ -1,7 +1,6 @@
 import { React, useState } from 'react'
 import axios from 'axios'
 
-
 function PostMessage() {
     const [msgData, setMsg] = useState()
 
@@ -11,10 +10,7 @@ function PostMessage() {
     
     const handleSubmit = async () =>{
         let data = JSON.parse(localStorage.getItem('loginData'))
-        console.log(data)
         if (data.token) {
-        console.log("2")
-
             let result = await axios.post('http://localhost:8000/post', {
                 token : data.token,
                 profile : data.profile,
@@ -23,6 +19,7 @@ function PostMessage() {
             console.log(result.data)
         }
     }
+
     return (
         <div className="App">
             <header className="App-header">
@@ -34,7 +31,7 @@ function PostMessage() {
             </header>
         </div>
     );
-  }
+}
   
-  export default PostMessage;
+export default PostMessage;
   
