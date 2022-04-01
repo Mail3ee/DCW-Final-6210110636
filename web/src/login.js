@@ -12,7 +12,7 @@ function Login(){
     }
     const handleLogin = async (response) =>{
         if (response.accessToken) {
-            let result = await axios.post('http://localhost:8000/login', {
+            let result = await axios.post('http://20.205.136.177:8000/login', {
                 token : response.accessToken,
                 profile : response.profileObj
             })
