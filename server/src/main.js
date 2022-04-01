@@ -4,7 +4,7 @@ const { Connection, Request } = require("tedious");
 const winston = require('winston');
 const expressWinston = require('express-winston');
 const cors = require('cors')
-const port = 8000
+const port = 8080
 const app = express()
 
 const config = {
