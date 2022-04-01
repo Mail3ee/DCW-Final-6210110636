@@ -2,15 +2,10 @@ import './App.css';
 import { React, useState } from 'react'
 import axios from 'axios'
 import GoogleLogin from 'react-google-login'
-import {Link, Routes, Route} from 'react-router-dom'
-import PostMessage from './postmessage'
+import {Link} from 'react-router-dom'
 
 function Login(){
-    const [loginData, setLoginData] = useState(
-        localStorage.getItem('loginData') 
-        ? JSON.parse(localStorage.getItem('loginData'))
-        :null     
-    )
+    const [loginData, setLoginData] = useState()
 
     const handleFailure = (result) =>{
     /*  Fail Login to Google */
@@ -21,7 +16,7 @@ function Login(){
                 token : response.accessToken,
                 profile : response.profileObj
             })
-        // console.log(result)
+        localStorage.setItem('loginData', JSON.stringify(result.data))
         setLoginData(result.data.profile)
 
         }
