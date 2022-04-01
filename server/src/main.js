@@ -78,7 +78,6 @@ app.post('/post', (req, res) =>{
             }
         }
     );
-    connection.execSql(request);
 })
 
 app.listen(port, ()=>{
