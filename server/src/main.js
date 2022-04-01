@@ -28,7 +28,7 @@ connection.on("connect", err => {
     if (err) {
       console.error(err.message);
     }else {
-        console.log("connect") 
+        // console.log("connect") 
     }
 });
 connection.connect();
@@ -66,21 +66,19 @@ app.post('/post', (req, res) =>{
     let user_name = req.body.profile.name
     let msg = req.body.msg
 
-    // const request = new Request(
-    //     `INSERT to 20 pc.Name as CategoryName,
-    //                    p.name as ProductName
-    //      FROM [SalesLT].[ProductCategory] pc
-    //      JOIN [SalesLT].[Product] p ON pc.productcategoryid = p.productcategoryid`,
-    //     (err, rowCount) => {
-    //       if (err) {
-    //         console.error(err.message);
-    //       } else {
-    //         console.log(`${rowCount} row(s) returned`);
-    //       }
-    //     }
-    //   );
-
-    
+    const request = new Request(
+        `INSERT INTO [dbo].[users_message] (uid, uname, msg)
+        VALUES ('${user_id}', '${user_name}', '${msg}');
+        SELECT * FROM [dbo].[users_message] `,
+        (err, rowCount) => {
+            if (err) {
+                console.error(err.message);
+            } else {
+                console.log(`${rowCount} row(s) returned`);
+            }
+        }
+    );
+    connection.execSql(request);
 })
 
 app.listen(port, ()=>{
