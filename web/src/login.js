@@ -8,7 +8,8 @@ function Login(){
     const [loginData, setLoginData] = useState()
 
     const handleFailure = (result) =>{
-    /*  Fail Login to Google */
+        console.log("err")
+        console.log(result)
     }
     const handleLogin = async (response) =>{
         if (response.accessToken) {
