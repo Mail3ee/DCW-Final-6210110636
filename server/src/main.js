@@ -2,6 +2,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const { Connection, Request } = require("tedious");
 const winston = require('winston');
+const {createLogger, format, transports} = require('winston');
 const expressWinston = require('express-winston');
 const cors = require('cors')
 const port = 8080
@@ -48,16 +49,27 @@ app.use(expressWinston.logger({
     ignoreRoute: function (req, res) { return false; }
 }));
 
+const logger = createLogger({
+  level: 'debug',
+  format: format.simple(),
+  // You can also comment out the line above and uncomment the line below for JSON format
+  // format: format.json(),
+  transports: [new transports.Console()]
+});
+
+
 app.use(bodyParser.json());
 app.use(cors())
 
 app.get('/', (req, res) =>{
+    logger.info('Hello world');
     res.send('Hello World')
 })
 
 app.post('/login', (req, res) =>{
     let access_token = req.body.token
     let _profile = req.body.profile
+    logger.info(`${_profile.name} Login to Server`);
     res.send({token: access_token, profile: _profile})
 })
 
@@ -72,9 +84,11 @@ app.post('/post', (req, res) =>{
         SELECT * FROM [dbo].[users_message] `,
         (err, rowCount) => {
             if (err) {
-                console.error(err.message);
+                // console.error(err.message);
+                logger.error(`${err.message}`);
             } else {
-                console.log(`${rowCount} row(s) returned`);
+                logger.debug(`${rowCount} row(s) returned`);
+                // console.log(`${rowCount} row(s) returned`);
             }
         }
     );

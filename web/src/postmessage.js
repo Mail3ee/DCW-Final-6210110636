@@ -11,12 +11,13 @@ function PostMessage() {
     const handleSubmit = async () =>{
         let data = JSON.parse(localStorage.getItem('loginData'))
         if (data.token) {
-            let result = await axios.post('https://dcw-6210110636.eastasia.cloudapp.azure.com:8000/post', {
+            // let result = await axios.post('https://dcw-6210110636.eastasia.cloudapp.azure.com:8000/post', {
+            let result = await axios.post('http://localhost:8080/post', {
                 token : data.token,
                 profile : data.profile,
                 msg : msgData.value
             })
-            console.log(result.data)
+            // console.log(result.data)
         }
     }
 
