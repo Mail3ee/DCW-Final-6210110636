@@ -1,6 +1,7 @@
 import { React, useState } from 'react'
 import axios from 'axios'
 import {Link, useNavigate} from 'react-router-dom'
+import './App.css';
 
 function PostMessage() {
     const [msgData, setMsg] = useState()
@@ -42,12 +43,18 @@ function PostMessage() {
                             </div>  
                         ):(
                             <>
-                                Post Your Message:
-                                <div>
-                                    <textarea placeholder="Post Your Message" onChange={handleChange}/>
+                                <div className='textheadMessage'>
+                                    Post Your Message
                                 </div>
-                                <input type="submit" onClick={handleSubmit}/>
-                                <button ><Link to = "/" className="btn"> Homepage </Link></button>
+                               
+                                <div>
+                                    <textarea className='textareaokok' placeholder="Post Your Message" onChange={handleChange}/>
+                                </div>
+                                <div>
+                                    <input className='btn-one-login' type="submit" onClick={handleSubmit}/>
+                                    <button className='btn-tree-login' ><Link to = "/" className="btn"> Homepage </Link></button>
+                                </div>
+                                
                             </>
             
                         )

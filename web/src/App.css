@@ -21,7 +21,7 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+ color: #f0f0f0;
 }
 
 .App-link {
@@ -30,7 +30,8 @@
 
 .btn {
   text-decoration: none;
-  color: black;
+  color: #f0f0f0;
+  font-size: 1rem;
 }
 .input {
   width: 200px;
@@ -45,4 +46,88 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.btn-one-login {
+  font-size: 1rem;
+  color: #f0f0f0;
+  width: 130px;
+  height: 40px;
+  background-color: #0096ff;
+  border: none;
+  outline:none;
+  margin-right: 3px;
+  border-radius: 10px 0px 0px 10px;
+}
+.btn-one-login:hover {
+  color: white;
+  background-color: #006eff;
+}
+
+.btn-two-login {
+  width: 130px;
+  height: 40px;
+  background-color: #0096ff;
+  border: none;
+  outline:none;
+}
+.btn-two-login:hover {
+  color: white;
+  background-color: #006eff;
+}
+
+.btn-tree-login {
+  width: 130px;
+  height: 40px;
+  background-color: #0096ff;
+  border: none;
+  outline:none;
+  margin-left: 3px;
+  border-radius: 0px 10px 10px 0px;
+}
+.btn-tree-login:hover {
+  color: white;
+  background-color: #006eff;
+}
+
+.textareaokok {
+  resize: none;
+  width: 400px;
+  height: 250px;
+  border: none;
+  outline:none;
+  font-size: 1.5rem;
+  border-radius: 0px 10px 0px 10px;
+}
+
+.textheadMessage {
+  margin-bottom: 30px;
+}
+.postbtn-box {
+  margin-top: 10px;
+}
+.custom-file-input {
+  color: transparent;
+}
+.custom-file-input::-webkit-file-upload-button {
+  visibility: hidden;
+}
+.custom-file-input::before {
+  content: 'Select image';
+  color: black;
+  display: inline-block;
+  background-color: rgb(199, 199, 0);
+  border-radius: 10px;
+  padding: 10px 8px;
+  outline: none;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  cursor: pointer;
+}
+.custom-file-input:hover::before {
+  color: black;
+  background-color: yellow;
+}
+.custom-file-input:active {
+  outline: 0;
 }

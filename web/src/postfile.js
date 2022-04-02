@@ -1,6 +1,7 @@
 import { React, useState } from 'react'
 import {Link, useNavigate} from 'react-router-dom'
 import axios from 'axios'
+import './App.css';
 
 function PostFile() {
     const [file, setFile] = useState({})
@@ -44,15 +45,17 @@ function PostFile() {
                         </div>  
                     ):(
                         <>
-                            <div>
+                            <div className='textheadMessage'>
                                 Post File Component
                             </div>
                             <img src={imagePreviewUrl ? imagePreviewUrl : "https://media.discordapp.net/attachments/888099195578380299/956506399440011274/WC_Profile.png?width=676&height=676"}
                                 style={{width: "500px", height: "500px"}}/> 
-        
-                            <input type="file"onChange={handleUploadImage}/>
-                            <button onClick={upLoadImg}> Upload </button>
-                            <button ><Link to = "/" className="btn"> Homepage </Link></button> 
+                            <div className='postbtn-box'>
+                                <input className='custom-file-input' type="file"onChange={handleUploadImage}/>
+                                <button className='btn-one-login' onClick={upLoadImg}> Upload </button>
+                                <button className='btn-tree-login' ><Link to = "/" className="btn"> Homepage </Link></button> 
+                            </div>
+                                
                         </>
          
                     )

@@ -52,9 +52,13 @@ function Login(){
                     <div>
                         <img src = {loginData.profile.imageUrl}></img>
                         <h3>You logged in as {loginData.profile.name}</h3>
-                        <button onClick={handleLogout}>Logout</button>
-                        <button ><Link to = "/postmessage" className="btn"> PostMessage </Link></button>
-                        <button ><Link to = "/postfile" className="btn"> PostFile </Link></button>
+                        <div className='box-all-btn'>
+                            <button className='btn-one-login' onClick={handleLogout}>Logout</button>
+                            <button className='btn-two-login' ><Link to = "/postmessage" className="btn"> PostMessage </Link></button>
+                            <button className='btn-tree-login' ><Link to = "/postfile" className="btn"> PostFile </Link></button>
+                            
+                        </div>
+
                     </div>  
                 ):(
                     <GoogleLogin 
