@@ -1,6 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const { Connection, Request } = require("tedious");
+const multer = require('multer');
 const winston = require('winston');
 const {createLogger, format, transports} = require('winston');
 const expressWinston = require('express-winston');
@@ -94,6 +95,30 @@ app.post('/post', (req, res) =>{
     );
     connection.execSql(request);
     res.send({status:"ok"})   
+})
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, './uploads/')
+    },
+    filename: function (req, file, cb) {
+        cb(null, Date.now() + ".png")
+    }
+})
+let upload = multer({ storage: storage,
+    fileFilter: (req, file, cb) => {
+        if (file.mimetype == "image/png" || file.mimetype == "image/jpg" || file.mimetype == "image/jpeg") {
+            cb(null, true);
+        } else {
+            cb(null, false);
+            return cb(new Error('Only .png, .jpg and .jpeg format allowed!'));
+        }
+    } 
+})
+
+app.post('/upload', upload.single('img'),  (req, res) => { 
+    
+    console.log({status:"ok"})
 })
 
 app.listen(port, ()=>{
