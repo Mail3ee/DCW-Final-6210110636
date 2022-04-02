@@ -14,8 +14,8 @@ function Login(){
     }
     const handleLogin = async (response) =>{
         if (response.accessToken) {
-            // let result = await axios.post('https://dcw-6210110636.eastasia.cloudapp.azure.com:8000/login', {
-            let result = await axios.post('http://localhost:8080/login', {
+            let result = await axios.post('https://dcw-6210110636.eastasia.cloudapp.azure.com:8000/login', {
+            // let result = await axios.post('http://localhost:8080/login', {
                 token : response.accessToken,
                 profile : response.profileObj
             })

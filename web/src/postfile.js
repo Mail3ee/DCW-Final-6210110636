@@ -21,7 +21,10 @@ function PostFile() {
     const upLoadImg = async () =>{
         const  formData = new FormData()
         formData.append('img', file)
-        const result = await axios.post('http://localhost:8080/upload', formData,{
+        // const result = await axios.post('http://localhost:8080/upload', formData,{
+
+        // })
+        const result = await axios.post('https://dcw-6210110636.eastasia.cloudapp.azure.com:8000/upload', formData,{
 
         })
         if(result.data.status === "ok") {
