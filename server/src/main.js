@@ -117,8 +117,7 @@ let upload = multer({ storage: storage,
 })
 
 app.post('/upload', upload.single('img'),  (req, res) => { 
-    
-    console.log({status:"ok"})
+    res.send({status:"ok"})   
 })
 
 app.listen(port, ()=>{

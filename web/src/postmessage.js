@@ -1,9 +1,10 @@
 import { React, useState } from 'react'
 import axios from 'axios'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 
 function PostMessage() {
     const [msgData, setMsg] = useState()
+    const navigate = useNavigate();
 
     function handleChange(event){
         setMsg({value: event.target.value}) 
@@ -18,7 +19,11 @@ function PostMessage() {
                 profile : data.profile,
                 msg : msgData.value
             })
-            // console.log(result.data)
+
+            if (result.data.status === "ok") {
+                navigate('/')
+            }
+            
         }
     }
 
