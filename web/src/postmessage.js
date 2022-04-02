@@ -5,7 +5,7 @@ import {Link, useNavigate} from 'react-router-dom'
 function PostMessage() {
     const [msgData, setMsg] = useState()
     const navigate = useNavigate();
-
+    const [success, setSuccess] = useState(false)
     function handleChange(event){
         setMsg({value: event.target.value}) 
     }
@@ -21,7 +21,12 @@ function PostMessage() {
             })
 
             if (result.data.status === "ok") {
-                navigate('/')
+                setSuccess(true)
+
+                setTimeout(function() {
+                    setSuccess(false)
+                    navigate('/')
+                }, 3000);
             }
             
         }
@@ -30,12 +35,23 @@ function PostMessage() {
     return (
         <div className="App">
             <header className="App-header">
-                Post Your Message:
-                <div>
-                    <textarea placeholder="Post Your Message" onChange={handleChange}/>
-                </div>
-                <input type="submit" onClick={handleSubmit}/>
-                <button ><Link to = "/" className="btn"> Homepage </Link></button>
+                {
+                    success ? (
+                            <div>
+                                <h3>Send Message Success</h3>
+                            </div>  
+                        ):(
+                            <>
+                                Post Your Message:
+                                <div>
+                                    <textarea placeholder="Post Your Message" onChange={handleChange}/>
+                                </div>
+                                <input type="submit" onClick={handleSubmit}/>
+                                <button ><Link to = "/" className="btn"> Homepage </Link></button>
+                            </>
+            
+                        )
+                }     
             </header>
         </div>
     );

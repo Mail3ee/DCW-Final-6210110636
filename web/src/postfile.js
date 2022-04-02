@@ -47,7 +47,7 @@ function PostFile() {
                             <div>
                                 Post File Component
                             </div>
-                            <img src={imagePreviewUrl ? imagePreviewUrl : "https://dcvta86296.i.lithium.com/t5/image/serverpage/image-  id/14321i0011CCD2E7F3C8F8/image-size/large?v=1.0&px=999"}
+                            <img src={imagePreviewUrl ? imagePreviewUrl : "https://media.discordapp.net/attachments/888099195578380299/956506399440011274/WC_Profile.png?width=676&height=676"}
                                 style={{width: "500px", height: "500px"}}/> 
         
                             <input type="file"onChange={handleUploadImage}/>
@@ -61,9 +61,5 @@ function PostFile() {
         </div>
     )
 }
-
-
-
-
 
 export default PostFile;
