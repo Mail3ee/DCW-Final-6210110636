@@ -1,5 +1,6 @@
 import { React, useState } from 'react'
 import axios from 'axios'
+import {Link} from 'react-router-dom'
 
 function PostMessage() {
     const [msgData, setMsg] = useState()
@@ -29,6 +30,7 @@ function PostMessage() {
                     <textarea placeholder="Post Your Message" onChange={handleChange}/>
                 </div>
                 <input type="submit" onClick={handleSubmit}/>
+                <button ><Link to = "/" className="btn"> Homepage </Link></button>
             </header>
         </div>
     );

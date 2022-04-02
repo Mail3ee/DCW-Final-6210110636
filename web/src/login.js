@@ -6,6 +6,7 @@ import {Link} from 'react-router-dom'
 
 function Login(){
     const [loginData, setLoginData] = useState()
+    const [chkState, setchkState] = useState(false)
 
     const handleFailure = (result) =>{
         console.log("err")
@@ -19,14 +20,26 @@ function Login(){
                 profile : response.profileObj
             })
         localStorage.setItem('loginData', JSON.stringify(result.data))
-        setLoginData(result.data.profile)
-
+        setLoginData(result.data)
         }
     }
+    
 
     const handleLogout = () =>{
         localStorage.removeItem('loginData')
         setLoginData(null);
+    }
+    
+    const handleRefresh = () =>{
+        let storage = localStorage.getItem('loginData')
+        if (storage) {
+            setLoginData(JSON.parse(storage))
+        }
+    }
+    
+    if (!chkState){
+        setchkState(true)
+        handleRefresh()
     }
     
     return(
@@ -37,8 +50,8 @@ function Login(){
             {
                 loginData ? (
                     <div>
-                        <img src = {loginData.imageUrl}></img>
-                        <h3>You logged in as {loginData.name}</h3>
+                        <img src = {loginData.profile.imageUrl}></img>
+                        <h3>You logged in as {loginData.profile.name}</h3>
                         <button onClick={handleLogout}>Logout</button>
                         <button ><Link to = "/postmessage" className="btn"> PostMessage </Link></button>
                         <button ><Link to = "/postfile" className="btn"> PostFile </Link></button>
